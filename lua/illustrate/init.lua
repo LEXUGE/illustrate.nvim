@@ -58,7 +58,8 @@ local function read_optionally_caption_and_label(caption, label)
     end
 
     local is_latex_document = vim.bo.filetype == 'tex'
-    if label == nil and config.options.prompt_label and is_latex_document then
+    local is_typst_document = vim.bo.filetype == 'typst'
+    if label == nil and config.options.prompt_label and (is_latex_document or is_typst_document) then
         label = vim.fn.input("Provide label for the figure: ")
     end
 
