@@ -159,6 +159,10 @@ function M.insert_include_code(filename, caption, label)
         insert_code = config.options.text_templates.svg.tex:gsub("$FILE_PATH", filename)
     elseif filetype == "tex" and extension == "ai" then
         insert_code = config.options.text_templates.ai.tex:gsub("$FILE_PATH", filename)
+    elseif filetype == "typst" and extension == "svg" then
+        insert_code = config.options.text_templates.svg.typ:gsub("$FILE_PATH", filename)
+    elseif filetype == "typst" and extension == "ai" then
+        insert_code = config.options.text_templates.ai.typ:gsub("$FILE_PATH", filename)
     elseif filetype == "markdown" and extension == "svg" then
         insert_code = config.options.text_templates.svg.md:gsub("$FILE_PATH", filename)
     elseif filetype == "markdown" and extension == "ai" then

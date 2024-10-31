@@ -38,11 +38,14 @@ local function extract_path_from_figure()
 
     if filetype == "tex" then
         file_path = utils.extract_path_from_tex_figure_environment()
+    elseif filetype == "typst" then
+        local line = vim.fn.getline(".")
+        file_path = line:match('image%("([^"]+)"%)')
     elseif filetype == "markdown" then
         local line = vim.fn.getline(".")
         file_path = line:match("!%[[^%]]*%]%((.-)%s*%)")
     else
-        vim.notify("[illustrate.nvim] Not a tex or markdown document.", vim.log.levels.INFO)
+        vim.notify("[illustrate.nvim] Not a tex, typst, or markdown document.", vim.log.levels.INFO)
         return
     end
 
